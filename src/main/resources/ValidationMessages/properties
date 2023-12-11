@@ -1,0 +1,1 @@
+javax.validation.constraints.NotBlank.message=必須入力です

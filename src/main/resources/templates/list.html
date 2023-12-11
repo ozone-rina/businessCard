@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="jp" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" rel="stylesheet" />
+	<style>
+		.pageTitle {
+			margin-top: 80px;
+			margin-bottom: 50px;
+			text-align: center;
+		}
+		.table {
+			margin-top: 30px;
+		}
+		.search-button {
+			margin-left: 20px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="pageTitle">
+		<h1>名刺管理</h1>
+	</div>
+
+	<div class="container text-center">
+		<div class="row align-items-center">
+			<div class="col">
+				<form method="get" th:action="@{/findByNameLike}">
+					<input type="text" name="keyword" th:placeholder="キーワードを入力" style="width: 240px; height: 40px;">
+					<input type="submit" value="検索" class="btn btn-primary rounded-pill search-button" style="width: 80px;">
+				</form>
+			</div>
+
+			<div class="col">
+				<form th:action="@{/add}" method="get">
+					<input type="submit" value="新規登録" class="btn btn-danger rounded-pill" style="width: 150px;">
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="table">
+		<div style="width: 80%;" class="container col-md-6 text-center">
+			<table class="table table-bordered table-striped table-hover">
+				<tr class="table-info">
+					<th scope="col">登録日</th>
+					<th scope="col">名前</th>
+					<th scope="col">会社</th>
+					<th scope="col">案件名</th>
+					<th></th>
+					<th></th>
+				</tr>
+				<tr th:each="obj : ${businessCards}">
+					<td th:text="${obj.createDate != null ? #temporals.format(obj.createDate, 'yyyy/MM/dd') : ''}">
+					</td>
+					<td th:text="${obj.name}"></td>
+					<td th:text="${obj.company}"></td>
+					<td th:text="${obj.projectTitle}"></td>
+					<td>
+						<form th:action="@{/detail}" method="get">
+							<input type="submit" value="詳細" class="btn btn-outline-primary rounded-pill" style="width: 100%;">
+							<input type="hidden" name="id" th:value="${obj.businessCardId}">
+						</form>
+					</td>
+					<td>
+						<form th:action="@{/delete}" method="post">
+							<input type="submit" value="削除" class="btn btn-outline-danger rounded-pill" style="width: 100%;">
+							<input type="hidden" name="id" th:value="${obj.businessCardId}">
+						</form>
+					</td>
+				</tr>
+
+			</table>
+		</div>
+	</div>
+
+
+	<script th:href="@{/webjars/jquery/3.7.1/js/jquery.min.js}"></script>
+	<script th:href="@{/webjars/bootstrap/5.3.2/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

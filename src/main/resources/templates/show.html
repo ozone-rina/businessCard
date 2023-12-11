@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="jp" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" rel="stylesheet" />
+	<style>
+		.pageTitle {
+			margin-top: 80px;
+			margin-bottom: 50px;
+			text-align: center;
+		}
+
+		.table {
+			margin-bottom: 10px;
+		}
+
+		.buttons {
+			margin-top: 20px;
+			text-align: center;
+		}
+		.back-button {
+			margin-left: 60px;
+		}
+		.edit-button {
+			margin-right: 60px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="pageTitle">
+		<h1>名刺の詳細</h1>
+	</div>
+	<div class="container">
+		<div>
+			<div style="width: 80%;" class="container col-md-6 text-center">
+
+				<table class="table table-bordered table-striped" th:object="${businessCards}">
+					<input type="hidden" name="businesscardId" th:value="*{businessCardId}">
+					<div>登録日：
+						<span>
+							<span
+								th:text="*{createDate != null ? #temporals.format(createDate, 'yyyy/MM/dd') : ''}"></span>
+						</span>
+					</div>
+
+					<div class="table">
+						<tr>
+							<th>名前</th>
+							<td>
+								<input type="text" name="name" th:value="*{name}" style="width: 100%;">
+							</td>
+						</tr>
+						<tr>
+							<th>会社名</th>
+							<td>
+								<input type="text" name="company" th:value="*{company}" style="width: 100%;">
+							</td>
+						</tr>
+						<tr>
+							<th>部署名</th>
+							<td>
+								<input type="text" name="department" th:value="*{department}" style="width: 100%;">
+							</td>
+						</tr>
+						<tr>
+							<th>役職名</th>
+							<td>
+								<input type="text" name="post" th:value="*{post}" style="width: 100%;">
+							</td>
+						</tr>
+						<tr>
+							<th>住所</th>
+							<td>
+								<input type="text" name="address" th:value="*{address}" style="width: 100%;">
+							</td>
+						</tr>
+						<tr>
+							<th>電話番号</th>
+							<td>
+								<input type="text" name="tel" th:value="*{tel}" style="width: 100%;">
+							</td>
+						</tr>
+						<tr>
+							<th>mailアドレス</th>
+							<td>
+								<input type="text" name="mail" th:value="*{mail}" style="width: 100%;">
+							</td>
+						</tr>
+						<tr>
+							<th>案件名</th>
+							<td>
+								<input type="text" name="projecttitle" th:value="*{projectTitle}" style="width: 100%;">
+							</td>
+						</tr>
+						<tr>
+							<th>備考</th>
+							<td>
+								<textarea type="text" name="remarks" th:value="*{remarks}"
+									style="width: 100%;"></textarea>
+							</td>
+						</tr>
+					</div>
+				</table>
+
+			</div>
+		</div>
+
+		<div class="row g-3 buttons">
+			<div class="col back-button">
+				<form th:action="@{/}" method="get">
+					<input type="submit" value="戻る" class="btn btn-outline-secondary rounded-pill" style="width: 150px;">
+				</form>
+			</div>
+			<div class="col delete-button">
+				<form th:action="@{/delete}" method="post" th:object="${businessCards}">
+					<input type="submit" value="削除" class="btn btn-danger rounded-pill" style="width: 150px;">
+					<input type="hidden" name="id" th:value="*{businessCardId}">
+				</form>
+			</div>
+
+
+			<div class="col edit-button">
+				<form th:action="@{/edit}" method="get" th:object="${businessCards}">
+					<input type="submit" value="編集する" class="btn btn-primary rounded-pill" style="width: 150px;">
+					<input type="hidden" name="id" th:value="*{businessCardId}">
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<script th:href="@{/webjars/jquery/3.7.1/js/jquery.min.js}"></script>
+	<script th:href="@{/webjars/bootstrap/5.3.2/js/bootstrap.min.js}"></script>
+
+</body>
+
+</html>
