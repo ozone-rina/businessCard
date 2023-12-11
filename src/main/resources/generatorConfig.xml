@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+	<context id="userdb" targetRuntime="MyBatis3">
+		<!-- 接続設定 -->
+		<jdbcConnection driverClass="org.postgresql.Driver"
+			connectionURL="jdbc:postgresql://localhost:5432/demo"
+			userId="demo" password="demo" />
+
+		<javaTypeResolver>
+			<property name="useJSR310Types" value="true" />
+		</javaTypeResolver>
+
+		<!-- Java Modelの生成に関する設定 -->
+		<javaModelGenerator
+			targetPackage="com.example.demo.entity"
+			targetProject="businessCard/src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- XMLの生成に関する設定 -->
+		<sqlMapGenerator
+			targetPackage="com.example.demo.mapper"
+			targetProject="businessCard/src/main/resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- マッパークラスを生成する設定 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.example.demo.mapper"
+			targetProject="businessCard/src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!-- コード生成対象とするテーブルの情報 -->
+		<table tableName="companyTable">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+		<table tableName="personalInfoTable">
+			<property name="useActualColumnNames" value="true" />
+		</table>
+	</context>
+</generatorConfiguration>
