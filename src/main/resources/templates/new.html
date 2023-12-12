@@ -37,12 +37,9 @@
 
 			<div style="width: 60%;" class="container col-md-6 text-center">
 				<form method="post" th:action="@{/create}" th:object="${businessCards}">
-					<!--<input type="hidden" name="businesscardId" th:value="*{businessCardId}">-->
 					<input type="hidden" th:field="*{businessCardId}">
 					<div th:if="${#fields.hasErrors('global')}" th:errors="*{global}" th:errorclass="err"></div>
 
-					<!--<div class="row align-items-center">
-			<div style="width: 60%;" class="container col-md-6 text-center">-->
 					<table class="table table-bordered table-striped">
 						<tr>
 							<th>名前</th>
