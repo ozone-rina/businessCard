@@ -11,9 +11,11 @@
 			margin-bottom: 50px;
 			text-align: center;
 		}
+
 		.table {
 			margin-top: 30px;
 		}
+
 		.search-button {
 			margin-left: 20px;
 		}
@@ -22,9 +24,10 @@
 
 <body>
 	<div class="pageTitle">
-		<h1>名刺管理　競合を起こすぞ
-		</h1>
-		<h1>競合２の編集を追加</h1>
+		<div>
+			<h1>名刺no管理　競合を起こすぞ</h1>
+			<h1>競合２の編集を追加</h1>
+		</div>
 	</div>
 
 	<div class="container text-center">
@@ -32,7 +35,8 @@
 			<div class="col">
 				<form method="get" th:action="@{/findByNameLike}">
 					<input type="text" name="keyword" th:placeholder="キーワードを入力" style="width: 240px; height: 40px;">
-					<input type="submit" value="検索" class="btn btn-primary rounded-pill search-button" style="width: 80px;">
+					<input type="submit" value="検索" class="btn btn-primary rounded-pill search-button"
+						style="width: 80px;">
 				</form>
 			</div>
 
@@ -64,13 +68,15 @@
 					<td th:text="${obj.projectTitle}"></td>
 					<td>
 						<form th:action="@{/detail}" method="get">
-							<input type="submit" value="詳細" class="btn btn-outline-primary rounded-pill" style="width: 100%;">
+							<input type="submit" value="詳細" class="btn btn-outline-primary rounded-pill"
+								style="width: 100%;">
 							<input type="hidden" name="id" th:value="${obj.businessCardId}">
 						</form>
 					</td>
 					<td>
 						<form th:action="@{/delete}" method="post">
-							<input type="submit" value="削除" class="btn btn-outline-danger rounded-pill" style="width: 100%;">
+							<input type="submit" value="削除" class="btn btn-outline-danger rounded-pill"
+								style="width: 100%;">
 							<input type="hidden" name="id" th:value="${obj.businessCardId}">
 						</form>
 					</td>
